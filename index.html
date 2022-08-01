@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 15% 1fr;
+    grid-template-areas: 
+        "head"
+        "body"
+    ;
+}
+
+.header{
+    grid-area: head;
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+}
+h1{
+    font-size: 5em;
+}
+.main{
+    display: grid;
+    grid-area: body;
+    background-color: aqua;
+    grid-template-columns: 20% 1fr 1fr 1fr 1fr 1fr 20%;
+    grid-template-rows: 15% 1fr 1fr 1fr 1fr 10%;
+    grid-template-areas: 
+    "..... ..... ..... clerk ..... ..... ..... "
+    "..... book book book book book ....."
+    "..... manual manual manual manual manual ..... "
+    "..... ..... ..... footer ..... ..... ..... "
+    ;
+}
+.clerk{
+    padding: 1em;
+    grid-area: clerk;
+}
+.clerkCard{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    min-width: 12.75em;
+
+    height: 20em;
+    background-color: bisque;
+    margin: 20px;
+    padding: .5em;
+    border: .15em solid black ;
+    border-radius: .5em;
+}
+.callTheClerk{
+display: block;
+}
+.addTheBook{
+    display: none;
+}
+
+.inlineRadio{
+    display: inline-block;
+}
+.form_input{
+    display: block;
+}
+.cardCentered{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: .5em;
+    gap: .5em;
+}
+
+.form_mesg{
+    display: block;
+}
+
+
+.verifiedInput{
+
+    border-color: darkgreen;
+}
+.invalidInput{
+    border-color: orangered;
+}
+
+
+.bookshelf{
+    grid-area: book;
+}
+.book{
+    width: 12.5em;
+    height: 20em;
+    background-image: url("bookcover.jpg");
+    background-size: cover;
+    border: 1px solid rgb(136, 136, 136);
+    border-radius: .5em;
+    padding: 1em;
+}
+
+.whodis{
+    grid-area: footer;
+}
+
+.manual{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-area: manual;
+}
+.instruction{
+    border: .25em solid black;
+    border-radius: .25em;
+    padding .5em;
+    max-width: 40%;
+    margin: 1em;
+}
+
+.footer{
+    background-color: brown;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+    <div class="header">
+        <h1>Library</h1>
+    </div>
+    <div class="main">
+        <div class="clerk">
+       
+            <div class="callTheClerk clerkCard" id="callTheClerk">
+                <h3>Hello</h3>
+                <button id="switchButton">Add a New Book +</button>
+            </div>
+            <div class="addTheBook clerkCard" id="addTheBook">
+                <label for="titleInput" class="form_input">Title</label> 
+                <input type="text" id="titleInput" class="form_input">
+                <label for="authorInput" class="form_input">Author</label> 
+                <input type="text" id="authorInput" class="form_input">
+                <label for="pageInput" class="form_input">Page Count</label> 
+                <input type="text" id="countInput" class="form_input">
+                <br>
+               
+                <input type="radio" class="inlineRadio" id="haveRead" name="read_status" value="haveRead">
+                <label for="haveRead"  class="inlineRadio"  >Have Read</label>
+                <input type="radio" class="inlineRadio" id="hnotRead" name="read_status" value="hnotRead">
+                <label for="hnotRead" class="inlineRadio" >Haven't Read</label><br>
+                <div class="cardCentered">
+                    <span class="form_mesg" id="formMesg">looks good</span>
+                    <button id="submitButton">Submit</button>
+                    <button id="switchButton2">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bookshelf">
+            <div class="book">
+                Hi I'm a Book
+                by Brian
+                <button>read</button>
+            </div>
+        </div>
+
+    <div class="manual">
+        <div class="instruction">
+            <p>If you haven’t already, set up your project with skeleton HTML/CSS and JS files.
+                All of your book objects are going to be stored in a simple array, so add a function to the script (not the constructor) that can take user’s input and store the new book objects into an array. Your code should look something like this:
+                
+                let myLibrary = [];
+                
+                function Book() {
+                  // the constructor...
+                }
+                
+                function addBookToLibrary() {
+                  // do stuff here
+                }</p>
+        </div>
+
+        <div class="instruction">
+            <p>Add a button on each book’s display to remove the book from the library.
+                You will need to associate your DOM elements with the actual book objects in some way. One easy solution is giving them a data-attribute that corresponds to the index of the library array.</p>
+        </div>
+        <div class="instruction">
+            <p>Add a button on each book’s display to change its read status.
+                To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.</p>
+        </div>
+        <div class="instruction">
+            <p>NOTE: You’re not required to add any type of storage right now. You will have the option to come back to this project later on in the course.</p>
+        </div>
+    </div>
+    <div class="whodis">
+        Annie Spratt
+Avatar of user Annie Spratt
+Annie Spratt
+@anniespratt
+
+
+
+
+@anniespratt
+    </div>
+</div>
+</div>
+    <p>
+
+    </p>
+</body>
+<script>
+let library = []
+let bookCount = 0;
+let validTitle = false;
+let validAuthor = false;
+let validCount = false;
+let validRead = false;
+
+const callTheClerk = document.getElementById('callTheClerk');
+const addTheBook = document.getElementById('addTheBook');
+const switchButton = document.getElementById('switchButton');
+const switchButton2 = document.getElementById('switchButton2');
+const submitButton = document.getElementById('submitButton');
+const titleInput = document.getElementById('titleInput');
+const authorInput = document.getElementById('authorInput');
+const countInput = document.getElementById('countInput');
+const haveRead = document.getElementById('haveRead');
+const hnotRead = document.getElementById('hnotRead');
+//radio button
+let validForm = false;
+
+
+
+                                                                    // Card Switch
+switchButton.addEventListener('click', e => {
+        e.preventDefault();
+       callClerk();
+    });
+switchButton2.addEventListener('click', e => {
+        e.preventDefault();
+       callClerk();
+    });
+
+submitButton.addEventListener('click', e =>{
+        verifyForm();
+        updateLibrary();
+})                                                                    // VERIFY INPUTS
+
+function verifyTitle(str){
+console.log("verifying title with input of: " + str)
+    regexp = /([A-Z]|[a-z]|\d)+/;
+   if (regexp.test(str)){
+        console.log("pass title");
+        titleInput.classList.add("verifiedInput");
+        titleInput.classList.remove("invalidInput");
+        return true;
+   }else{
+       console.log("fail title");
+       titleInput.classList.remove("verifiedInput");
+       titleInput.classList.add("invalidInput");
+       return false;
+   }
+}
+function verifyAuthor(str){
+console.log("verifying author with input of: " + str)
+    regexp = /([A-Z]|[a-z]|\d)+/;
+   if (regexp.test(str)){
+        console.log("pass author");
+        authorInput.classList.add("verifiedInput");
+        authorInput.classList.remove("invalidInput");
+        return true;
+   }else{
+        authorInput.classList.remove("verifiedInput");
+        authorInput.classList.add("invalidInput");
+        console.log("fail author");
+        return false;
+   }
+}
+function verifyCount(num){
+console.log("verifying title with input of: " + num)
+    regexp = /\d/;
+   if (regexp.test(num)){
+        console.log("pass count");
+        countInput.classList.add("verifiedInput");
+        countInput.classList.remove("invalidInput");
+        return true;
+   }else{
+        countInput.classList.remove("verifiedInput");
+        countInput.classList.add("invalidInput");
+        console.log("fail count");
+        return false;
+   }
+}
+
+function verifyRadio(){
+    if(haveRead.checked){
+        validRead = true;
+    }else if(document.getElementById("hnotRead").checked){
+        validRead = true;
+    }else{
+        validRead = false;
+    }
+}
+haveRead.addEventListener('click', e =>{
+        verifyRadio();
+})
+hnotRead.addEventListener('click', e =>{
+        verifyRadio();
+})
+                                                        // Verify Form
+function verifyForm(){
+    let bookIndex = bookCount + 1;
+    console.log("verifying " + bookIndex);
+    if(validTitle === true && validAuthor === true && validCount === true & validRead === true){
+        console.log("valid form")
+    }else{ 
+        console.log("invalid form")}
+}
+                                                        // BLUR check
+document.querySelectorAll(".form_input").forEach(inputElement => { 
+        inputElement.addEventListener("blur", e =>{    
+            if(e.target.id === "titleInput"){
+                if(verifyTitle(e.target.value)===true){
+                    console.log("blur pass")
+                    validTitle = true;
+                    verifyForm();
+                }else{
+                    validTitle = false;
+                    console.log("title failed blur check")
+                }
+            }else if(e.target.id === "authorInput"){
+                if(verifyAuthor(e.target.value)===true){
+                    console.log("blur pass")
+                    validAuthor = true;
+                    verifyForm();
+                }else{
+                    validAuthor = false;
+                    console.log("author failed blur check")
+                }
+            }else if(e.target.id === "countInput"){
+                if(verifyCount(e.target.value)===true){
+                    console.log("blur pass")
+                    validCount = true;
+                    verifyForm();
+                }else{
+                    validCount = false;
+                    console.log("count failed blur check")
+                }
+            }else if(e.target.id === "haveRead"){
+                if(verifyCount(e.target.value)===true){
+                    console.log("blur pass")
+                    validCount = true;
+                    verifyForm();
+                }else{
+                    validCount = false;
+                    console.log("count failed blur check")
+                }
+            }
+        })
+                })
+
+                                                        // RADIO UPDATE
+
+
+
+function updateLibrary(){
+
+console.log("update library called")
+//scans array 
+//displays the top 8
+//displays a table of contents
+
+}
+
+function callClerk(){
+    // grabs cards and changes status
+
+    if(callTheClerk.style.display !== "none"){
+        callTheClerk.style.display = "none";
+    }else if(callTheClerk.style.display === "none"){
+        callTheClerk.style.display = "block";
+    }
+    console.log('out');
+    console.log(addTheBook.style.display);
+    if(addTheBook.style.display === "block"){
+        addTheBook.style.display = "none";
+    }else if(addTheBook.style.display === "none" || addTheBook.style.display === ''){
+        addTheBook.style.display = "block";
+
+    }
+  
+
+}
+
+
+
+
+
+
+
+
+
+</script>
+</html>
