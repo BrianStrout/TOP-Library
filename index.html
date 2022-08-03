@@ -35,16 +35,25 @@ h1{
     grid-area: body;
     background-color: aqua;
     grid-template-columns: 20% 1fr 1fr 1fr 1fr 1fr 20%;
-    grid-template-rows: 15% 1fr 1fr 1fr 1fr 10%;
+    grid-template-rows:  1fr 1fr 1fr 1fr 10%;
     grid-template-areas: 
-    "..... ..... ..... clerk ..... ..... ..... "
-    "..... book book book book book ....."
+    "..... book1 book2 clerk book3 book4 ..... "
+    "..... book5 book6 dewey book7 book8 ....."
     "..... manual manual manual manual manual ..... "
     "..... ..... ..... footer ..... ..... ..... "
     ;
+    gap: 1em;
+}
+.cardTemplate{
+    height: 22em;
+    max-height: 22em;
+    padding: .5em;
+    border: .15em solid black ;
+    border-radius: .5em;
+
 }
 .clerk{
-    padding: 1em;
+    padding: 0;
     grid-area: clerk;
 }
 .clerkCard{
@@ -52,13 +61,13 @@ h1{
     flex-direction: column;
     justify-items: center;
     min-width: 12.75em;
-
-    height: 20em;
     background-color: bisque;
-    margin: 20px;
-    padding: .5em;
+    /* height: 22em;
+    max-height: 22em; */
+    /* margin: 20px; */
+    /* padding: .5em;
     border: .15em solid black ;
-    border-radius: .5em;
+    border-radius: .5em; */
 }
 .callTheClerk{
 display: block;
@@ -95,24 +104,90 @@ display: block;
     border-color: orangered;
 }
 
+.dewey{
+    grid-area: dewey;
+    background-color: gainsboro;
+    color:darkslategrey;
+    max-height: 22em;
+    padding: 1em;
+    
+}
+.dewey li{
+    margin: 1em;
+}
 
 .bookshelf{
     grid-area: book;
 }
 .book{
     width: 12.5em;
-    height: 20em;
+    height: 22em;
     background-image: url("bookcover.jpg");
     background-size: cover;
     border: 1px solid rgb(136, 136, 136);
     border-radius: .5em;
     padding: 1em;
+    color: rgb(153, 177, 198);
 }
+.book h4{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5em;
+    color: white;
+    text-decoration: underline;
+}
+.book p{
+    padding-left: 1em;
+    font-size: 1.25em;
+}
+.cardStatus{
+    display: block;
+    text-align: center;
+    padding-top: .75em;
+    padding-bottom: .75em;
+}
+.book button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .25em;
+    margin-top: .75em;
+}
+.book1{
+    grid-area: book1;
+    content: attr(data-title); 
+    /* opacity: 45%; */
+}
+/* #book1 h4::before{
+    content: attr(data-title); 
+    color: rgb(0, 0, 0);
+    opacity: 100%;
+    visibility: visible;
 
+} */
+.book2{
+    grid-area: book2;
+}
+.book3{
+    grid-area: book3;
+}
+.book4{
+    grid-area: book4;
+}
+.book5{
+    grid-area: book5;
+}
+.book6{
+    grid-area: book6;
+}
+.book7{
+    grid-area: book7;
+}
+.book8{
+    grid-area: book8;
+}
 .whodis{
     grid-area: footer;
 }
-
 .manual{
     width: 100%;
     display: flex;
@@ -129,12 +204,12 @@ display: block;
     max-width: 40%;
     margin: 1em;
 }
-
 .footer{
     background-color: brown;
 }
-
-
+.red{
+    border-color: crimson;
+}
 
 
     </style>
@@ -145,14 +220,48 @@ display: block;
     <div class="header">
         <h1>Library</h1>
     </div>
+                                                                <!-- MAIN HTML -->
+
+
+
     <div class="main">
+        <div  
+        class="book book1 cardTemplate" 
+        id="book1"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread"
+        >
+            <h4 id="b1t" class="cardTitle">bye
+            </h4>
+            <p class="cardAuthor">Brian Strout</p>
+            <p class="cardPages"><span class="cardPagesCount">234</span> pages</p>
+            <span class="cardStatus">Read</span>
+            <button>read</button>
+            <button>remove</button>
+        </div>
+
+
+        <div class="book book2 cardTemplate" 
+        id="book2"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread">
+            Hi I'm a Book
+            by Brian
+            <button>read</button>
+        </div>
         <div class="clerk">
        
-            <div class="callTheClerk clerkCard" id="callTheClerk">
+            <div class="callTheClerk clerkCard cardTemplate" id="callTheClerk">
                 <h3>Hello</h3>
                 <button id="switchButton">Add a New Book +</button>
             </div>
-            <div class="addTheBook clerkCard" id="addTheBook">
+            <div class="addTheBook clerkCard cardTemplate" id="addTheBook">
                 <label for="titleInput" class="form_input">Title</label> 
                 <input type="text" id="titleInput" class="form_input">
                 <label for="authorInput" class="form_input">Author</label> 
@@ -172,29 +281,63 @@ display: block;
                 </div>
             </div>
         </div>
-
-        <div class="bookshelf">
-            <div class="book">
-                Hi I'm a Book
-                by Brian
-                <button>read</button>
-            </div>
+        <div class="book book3 cardTemplate" 
+        id="book3"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread">
+            Hi I'm a Book
+            by Brian
+            <button>read</button>
         </div>
+        <div class="book book4 cardTemplate" 
+        id="book1"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread">
+            Hi I'm a Book
+            by Brian
+            <button>read</button>
+        </div>
+        <div class="book book5 cardTemplate" data-bookslot="5">
+            Hi I'm a Book
+            by Brian
+            <button>read</button>
+        </div>
+        <div class="book book6 cardTemplate" data-bookslot="6">
+            Hi I'm a Book
+            by Brian
+            <button>read</button>
+        </div>
+        <div  class="dewey cardTemplate">
+            I am the Dewey Decimal System!
+            <ol id="dewey">
+                <li>no books entered</li>
+            </ol>
+        </div>
+        <div class="book book7 cardTemplate" data-bookslot="7">
+            Hi I'm a Book
+            by Brian
+            <button>read</button>
+        </div>
+        <div class="book book8 cardTemplate" data-bookslot="8">
+            Hi I'm a Book
+            by Brian
+            <button>read</button>
+        </div>
+
+
+
+
 
     <div class="manual">
         <div class="instruction">
-            <p>If you haven’t already, set up your project with skeleton HTML/CSS and JS files.
-                All of your book objects are going to be stored in a simple array, so add a function to the script (not the constructor) that can take user’s input and store the new book objects into an array. Your code should look something like this:
-                
-                let myLibrary = [];
-                
-                function Book() {
-                  // the constructor...
-                }
-                
-                function addBookToLibrary() {
-                  // do stuff here
-                }</p>
+            <p>
+
         </div>
 
         <div class="instruction">
@@ -227,12 +370,17 @@ Annie Spratt
     </p>
 </body>
 <script>
-let library = []
+
+
+let library = [{title: 'fake title', author: 'fake author', pageCount: '222', status: 'read'}];
+
+let bookShelf = [];
 let bookCount = 0;
 let validTitle = false;
 let validAuthor = false;
 let validCount = false;
 let validRead = false;
+let validForm = false;
 
 const callTheClerk = document.getElementById('callTheClerk');
 const addTheBook = document.getElementById('addTheBook');
@@ -244,10 +392,28 @@ const authorInput = document.getElementById('authorInput');
 const countInput = document.getElementById('countInput');
 const haveRead = document.getElementById('haveRead');
 const hnotRead = document.getElementById('hnotRead');
-//radio button
-let validForm = false;
+const dewey = document.getElementById('dewey');
+const read_status =  document.getElementsByName('read_status');
+const bookSlot = document.querySelector('#bookslot');
+const book1 = document.getElementById('book1');
+const book2 = document.getElementById('book2');
+const book3 = document.getElementById('book3');
+const book4 = document.getElementById('book4');
+const book5 = document.getElementById('book5');
+const book6 = document.getElementById('book6');
+const book7 = document.getElementById('book7');
+const book8 = document.getElementById('book8');
 
 
+
+let editor = [book1, book2, book3, book4, book5, book6, book7, book8]
+
+
+function test(){
+    console.log("using array access    " + library[0]["title"]);
+    console.log(bookSlot.dataset.b1 );
+
+}
 
                                                                     // Card Switch
 switchButton.addEventListener('click', e => {
@@ -261,21 +427,30 @@ switchButton2.addEventListener('click', e => {
 
 submitButton.addEventListener('click', e =>{
         verifyForm();
-        updateLibrary();
-})                                                                    // VERIFY INPUTS
+       addBookToLibrary(titleInput.value, authorInput.value, countInput.value, "have");
+})
+
+
+//make a read/unread switch button
+//make a remove book from library button
+
+
+                                                        // VERIFY INPUTS
 
 function verifyTitle(str){
 console.log("verifying title with input of: " + str)
     regexp = /([A-Z]|[a-z]|\d)+/;
    if (regexp.test(str)){
-        console.log("pass title");
+       
         titleInput.classList.add("verifiedInput");
         titleInput.classList.remove("invalidInput");
+        verifyForm();
         return true;
    }else{
        console.log("fail title");
        titleInput.classList.remove("verifiedInput");
        titleInput.classList.add("invalidInput");
+       verifyForm();
        return false;
    }
 }
@@ -283,14 +458,16 @@ function verifyAuthor(str){
 console.log("verifying author with input of: " + str)
     regexp = /([A-Z]|[a-z]|\d)+/;
    if (regexp.test(str)){
-        console.log("pass author");
+      
         authorInput.classList.add("verifiedInput");
         authorInput.classList.remove("invalidInput");
+        verifyForm();
         return true;
    }else{
         authorInput.classList.remove("verifiedInput");
         authorInput.classList.add("invalidInput");
         console.log("fail author");
+        verifyForm();
         return false;
    }
 }
@@ -298,29 +475,33 @@ function verifyCount(num){
 console.log("verifying title with input of: " + num)
     regexp = /\d/;
    if (regexp.test(num)){
-        console.log("pass count");
+    
         countInput.classList.add("verifiedInput");
         countInput.classList.remove("invalidInput");
+        verifyForm();
         return true;
    }else{
         countInput.classList.remove("verifiedInput");
         countInput.classList.add("invalidInput");
         console.log("fail count");
+        verifyForm();
         return false;
    }
 }
-
 function verifyRadio(){
     if(haveRead.checked){
         validRead = true;
+        verifyForm();
     }else if(document.getElementById("hnotRead").checked){
         validRead = true;
+        verifyForm();
     }else{
         validRead = false;
     }
 }
 haveRead.addEventListener('click', e =>{
-        verifyRadio();
+    console.log("click");   
+    verifyRadio();
 })
 hnotRead.addEventListener('click', e =>{
         verifyRadio();
@@ -328,27 +509,29 @@ hnotRead.addEventListener('click', e =>{
                                                         // Verify Form
 function verifyForm(){
     let bookIndex = bookCount + 1;
-    console.log("verifying " + bookIndex);
+   
     if(validTitle === true && validAuthor === true && validCount === true & validRead === true){
-        console.log("valid form")
+        validForm = true;
     }else{ 
-        console.log("invalid form")}
+        console.log("invalid form")
+        validForm = false;
+    }
 }
                                                         // BLUR check
 document.querySelectorAll(".form_input").forEach(inputElement => { 
         inputElement.addEventListener("blur", e =>{    
             if(e.target.id === "titleInput"){
                 if(verifyTitle(e.target.value)===true){
-                    console.log("blur pass")
+                
                     validTitle = true;
                     verifyForm();
                 }else{
                     validTitle = false;
-                    console.log("title failed blur check")
+                    
                 }
             }else if(e.target.id === "authorInput"){
                 if(verifyAuthor(e.target.value)===true){
-                    console.log("blur pass")
+                 
                     validAuthor = true;
                     verifyForm();
                 }else{
@@ -357,7 +540,7 @@ document.querySelectorAll(".form_input").forEach(inputElement => {
                 }
             }else if(e.target.id === "countInput"){
                 if(verifyCount(e.target.value)===true){
-                    console.log("blur pass")
+                 
                     validCount = true;
                     verifyForm();
                 }else{
@@ -366,7 +549,7 @@ document.querySelectorAll(".form_input").forEach(inputElement => {
                 }
             }else if(e.target.id === "haveRead"){
                 if(verifyCount(e.target.value)===true){
-                    console.log("blur pass")
+                 
                     validCount = true;
                     verifyForm();
                 }else{
@@ -377,18 +560,68 @@ document.querySelectorAll(".form_input").forEach(inputElement => {
         })
                 })
 
-                                                        // RADIO UPDATE
 
-
-
-function updateLibrary(){
-
-console.log("update library called")
-//scans array 
-//displays the top 8
-//displays a table of contents
+function constructBook(title, author, pageCount, status){
+              
+                this.title = title;
+                this.author = author;
+                this.pageCount= pageCount;
+                this.status = status;
+                this.getInfo = function(){
+                    console.log("Book registered " + title);
+                }
 
 }
+function addBookToLibrary(title, author, pageCount, status) {
+console.log("trying")   
+          if(validForm === true){   
+                let newBook = new constructBook(title, author, pageCount, status)
+                
+                library.push(newBook);
+                bookCount ++;
+                updateLibrary();
+                updateDewey();
+                }                }                                 
+
+
+                //change dewey to bounce from library
+function updateDewey(){
+    let i=library.length-1;
+    let incoming = `${titleInput.value} by ${authorInput.value}. ${countInput.value} pages.`;
+    dewey.append(incoming);
+
+}
+
+function updateLibrary(){    
+        if(library.length > 0){console.log("updating library");
+        }else{return;}
+let shelfCap = 7;
+if(library.length < 8){
+    shelfCap=library.length;} 
+    console.log("shelf " + shelfCap);
+     
+            for(i=0; i<shelfCap; i++){
+                if(library[i]["title"].length>0){
+                    console.log(library[i]["title"]+"being sent to editor....");
+                    editor[i].bookslot=[i]+1;
+                    editor[0].querySelector('.cardTitle').innerHTML="hell yes"
+                    editor[i].author=library[i]["author"];
+                    editor[i].pagecount=library[i]["pageCount"];
+                    editor[i].status=library[i]["status"];
+                    
+                    console.log(editor[i]);
+                }    
+                    
+
+                // .innerHTML
+
+            }
+        }
+
+//displays the top 8
+
+//updatres Dewey
+
 
 function callClerk(){
     // grabs cards and changes status
@@ -398,7 +631,7 @@ function callClerk(){
     }else if(callTheClerk.style.display === "none"){
         callTheClerk.style.display = "block";
     }
-    console.log('out');
+   
     console.log(addTheBook.style.display);
     if(addTheBook.style.display === "block"){
         addTheBook.style.display = "none";
