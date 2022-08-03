@@ -120,6 +120,7 @@ display: block;
     grid-area: book;
 }
 .book{
+    position: relative;
     width: 12.5em;
     height: 22em;
     background-image: url("bookcover.jpg");
@@ -152,6 +153,17 @@ display: block;
     padding: .25em;
     margin-top: .75em;
 }
+.buttonBox{
+    width: 100%;
+    position: absolute;
+    bottom: 1em;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
 .book1{
     grid-area: book1;
     content: attr(data-title); 
@@ -234,13 +246,15 @@ display: block;
         data-pagecount=0;
         data-status="unread"
         >
-            <h4 id="b1t" class="cardTitle">bye
+            <h4 class="cardTitle">
             </h4>
-            <p class="cardAuthor">Brian Strout</p>
-            <p class="cardPages"><span class="cardPagesCount">234</span> pages</p>
-            <span class="cardStatus">Read</span>
+            <p class="cardAuthor"></p>
+            <p class="cardPages"><span class="cardPagesCount"></span></p>
+            <span class="cardStatus"></span>
+            <div class="buttonBox">
             <button>read</button>
             <button>remove</button>
+        </div>
         </div>
 
 
@@ -251,10 +265,15 @@ display: block;
         data-author=""
         data-pagecount=0;
         data-status="unread">
-            Hi I'm a Book
-            by Brian
-            <button>read</button>
-        </div>
+        <h4 class="cardTitle">
+        </h4>
+        <p class="cardAuthor"></p>
+        <p class="cardPages"><span class="cardPagesCount"></span></p>
+        <span class="cardStatus"></span>
+        <div class="buttonBox">
+        <button>read</button>
+        <button>remove</button>
+        </div></div>
         <div class="clerk">
        
             <div class="callTheClerk clerkCard cardTemplate" id="callTheClerk">
@@ -281,6 +300,7 @@ display: block;
                 </div>
             </div>
         </div>
+
         <div class="book book3 cardTemplate" 
         id="book3"
         data-bookslot=""
@@ -288,30 +308,65 @@ display: block;
         data-author=""
         data-pagecount=0;
         data-status="unread">
-            Hi I'm a Book
-            by Brian
-            <button>read</button>
-        </div>
+        <h4 class="cardTitle">
+        </h4>
+        <p class="cardAuthor"></p>
+        <p class="cardPages"><span class="cardPagesCount"></span></p>
+        <span class="cardStatus"></span>
+        <div class="buttonBox">
+        <button>read</button>
+        <button>remove</button>
+        </div></div>
+
+
         <div class="book book4 cardTemplate" 
-        id="book1"
+        id="book4"
         data-bookslot=""
         data-title=""
         data-author=""
         data-pagecount=0;
-        data-status="unread">
-            Hi I'm a Book
-            by Brian
+        data-status="unread"><h4 class="cardTitle">
+        </h4>
+        <p class="cardAuthor"></p>
+        <p class="cardPages"><span class="cardPagesCount"></span></p>
+        <span class="cardStatus"></span>
+        <div class="buttonBox">
+        <button>read</button>
+        <button>remove</button>
+        </div></div>
+        <div class="book book5 cardTemplate" id="book5"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread"
+        >
+            <h4 class="cardTitle">
+            </h4>
+            <p class="cardAuthor"></p>
+            <p class="cardPages"><span class="cardPagesCount"></span></p>
+            <span class="cardStatus"></span>
+            <div class="buttonBox">
             <button>read</button>
+            <button>remove</button>
         </div>
-        <div class="book book5 cardTemplate" data-bookslot="5">
-            Hi I'm a Book
-            by Brian
-            <button>read</button>
         </div>
-        <div class="book book6 cardTemplate" data-bookslot="6">
-            Hi I'm a Book
-            by Brian
+        <div class="book book6 cardTemplate" id="book6"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread"
+        >
+            <h4 class="cardTitle">
+            </h4>
+            <p class="cardAuthor"></p>
+            <p class="cardPages"><span class="cardPagesCount"></span></p>
+            <span class="cardStatus"></span>
+            <div class="buttonBox">
             <button>read</button>
+            <button>remove</button>
+        </div>
         </div>
         <div  class="dewey cardTemplate">
             I am the Dewey Decimal System!
@@ -319,15 +374,39 @@ display: block;
                 <li>no books entered</li>
             </ol>
         </div>
-        <div class="book book7 cardTemplate" data-bookslot="7">
-            Hi I'm a Book
-            by Brian
+        <div class="book book7 cardTemplate" id="book7"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread"
+        >
+            <h4 class="cardTitle">
+            </h4>
+            <p class="cardAuthor"></p>
+            <p class="cardPages"><span class="cardPagesCount"></span></p>
+            <span class="cardStatus"></span>
+            <div class="buttonBox">
             <button>read</button>
+            <button>remove</button>
         </div>
-        <div class="book book8 cardTemplate" data-bookslot="8">
-            Hi I'm a Book
-            by Brian
+        </div>
+        <div class="book book8 cardTemplate" id="book8"
+        data-bookslot=""
+        data-title=""
+        data-author=""
+        data-pagecount=0;
+        data-status="unread"
+        >
+            <h4 class="cardTitle">
+            </h4>
+            <p class="cardAuthor"></p>
+            <p class="cardPages"><span class="cardPagesCount"></span></p>
+            <span class="cardStatus"></span>
+            <div class="buttonBox">
             <button>read</button>
+            <button>remove</button>
+        </div>
         </div>
 
 
@@ -595,29 +674,28 @@ function updateDewey(){
 function updateLibrary(){    
         if(library.length > 0){console.log("updating library");
         }else{return;}
-let shelfCap = 7;
-if(library.length < 8){
-    shelfCap=library.length;} 
+let shelfCap = 8;
+// if(library.length < 8){
+//     shelfCap=library.length;} 
     console.log("shelf " + shelfCap);
      
             for(i=0; i<shelfCap; i++){
-                if(library[i]["title"].length>0){
+                if(library[i]=== undefined){
+                    // editor[i].bookslot=[i]+1;
+                    editor[i].querySelector('.cardTitle').innerHTML="";
+                    editor[i].querySelector('.cardAuthor').innerHTML="";
+                    editor[i].querySelector('.cardPages').innerHTML="";
+                    editor[i].querySelector('.cardStatus').innerHTML="";
+                }else if(library[i]["title"].length>0){
                     console.log(library[i]["title"]+"being sent to editor....");
                     editor[i].bookslot=[i]+1;
-                    editor[0].querySelector('.cardTitle').innerHTML="hell yes"
-                    editor[i].author=library[i]["author"];
-                    editor[i].pagecount=library[i]["pageCount"];
-                    editor[i].status=library[i]["status"];
-                    
-                    console.log(editor[i]);
-                }    
-                    
-
-                // .innerHTML
-
+                    editor[i].querySelector('.cardTitle').innerHTML=library[i]["title"];
+                    editor[i].querySelector('.cardAuthor').innerHTML=library[i]["author"];
+                    editor[i].querySelector('.cardPages').innerHTML=library[i]["pageCount"];
+                    editor[i].querySelector('.cardStatus').innerHTML=library[i]["status"];
+                }
             }
-        }
-
+    }
 //displays the top 8
 
 //updatres Dewey
