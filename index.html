@@ -153,6 +153,8 @@ display: block;
     padding: .25em;
     margin-top: .75em;
 }
+
+
 .buttonBox{
     width: 100%;
     position: absolute;
@@ -162,20 +164,20 @@ display: block;
     flex-direction: column;
     
 }
+.ghost{
 
+    pointer-events: none;
+    opacity: 0%;
+}
+.red{
+    border-color: brown;
+}
 
 .book1{
     grid-area: book1;
     content: attr(data-title); 
     /* opacity: 45%; */
 }
-/* #book1 h4::before{
-    content: attr(data-title); 
-    color: rgb(0, 0, 0);
-    opacity: 100%;
-    visibility: visible;
-
-} */
 .book2{
     grid-area: book2;
 }
@@ -197,6 +199,25 @@ display: block;
 .book8{
     grid-area: book8;
 }
+
+#dewTable{
+    background-color: aquamarine;
+    border: 1px solid black;
+    width: 95%;
+    margin: auto;
+}
+#dewTable th{
+    border: 1px dotted black;
+}
+.dewTableKey{
+    text-decoration: underline;
+}
+.deweyBook{
+    font-size: .75em;
+}
+
+
+
 .whodis{
     grid-area: footer;
 }
@@ -226,6 +247,9 @@ display: block;
 
     </style>
 </head>
+
+
+
 <body>
 
     <div class="container">
@@ -238,10 +262,11 @@ display: block;
 
     <div class="main">
         <div  
-        class="book book1 cardTemplate" 
+        class="book book1 cardTemplate ghost" 
         id="book1"
+        data-ddsindex = 0;
         data-bookslot=""
-        data-title=""
+        data-title="s"
         data-author=""
         data-pagecount=0;
         data-status="unread"
@@ -251,14 +276,14 @@ display: block;
             <p class="cardAuthor"></p>
             <p class="cardPages"><span class="cardPagesCount"></span></p>
             <span class="cardStatus"></span>
-            <div class="buttonBox">
-            <button>read</button>
-            <button>remove</button>
-        </div>
+                <div class="buttonBox">
+                <button class="cardReadButton">read</button>
+                <button class="cardRemoveButton">remove</button>
+                </div>
         </div>
 
 
-        <div class="book book2 cardTemplate" 
+        <div class="book book2 cardTemplate ghost"
         id="book2"
         data-bookslot=""
         data-title=""
@@ -271,13 +296,14 @@ display: block;
         <p class="cardPages"><span class="cardPagesCount"></span></p>
         <span class="cardStatus"></span>
         <div class="buttonBox">
-        <button>read</button>
-        <button>remove</button>
+            <button class="cardReadButton">read</button>
+            <button class="cardRemoveButton">remove</button>
         </div></div>
         <div class="clerk">
        
             <div class="callTheClerk clerkCard cardTemplate" id="callTheClerk">
                 <h3>Hello</h3>
+                <p>there are <span id="updateBookTitle">0</span> books in the system.</p>
                 <button id="switchButton">Add a New Book +</button>
             </div>
             <div class="addTheBook clerkCard cardTemplate" id="addTheBook">
@@ -289,9 +315,9 @@ display: block;
                 <input type="text" id="countInput" class="form_input">
                 <br>
                
-                <input type="radio" class="inlineRadio" id="haveRead" name="read_status" value="haveRead">
+                <input type="radio" class="inlineRadio" id="haveRead" name="read_status" value="read">
                 <label for="haveRead"  class="inlineRadio"  >Have Read</label>
-                <input type="radio" class="inlineRadio" id="hnotRead" name="read_status" value="hnotRead">
+                <input type="radio" class="inlineRadio" id="hnotRead" name="read_status" value="unread">
                 <label for="hnotRead" class="inlineRadio" >Haven't Read</label><br>
                 <div class="cardCentered">
                     <span class="form_mesg" id="formMesg">looks good</span>
@@ -301,7 +327,7 @@ display: block;
             </div>
         </div>
 
-        <div class="book book3 cardTemplate" 
+        <div class="book book3 cardTemplate ghost" 
         id="book3"
         data-bookslot=""
         data-title=""
@@ -314,12 +340,12 @@ display: block;
         <p class="cardPages"><span class="cardPagesCount"></span></p>
         <span class="cardStatus"></span>
         <div class="buttonBox">
-        <button>read</button>
-        <button>remove</button>
+            <button class="cardReadButton">read</button>
+            <button class="cardRemoveButton">remove</button>
         </div></div>
 
 
-        <div class="book book4 cardTemplate" 
+        <div class="book book4 cardTemplate ghost" 
         id="book4"
         data-bookslot=""
         data-title=""
@@ -331,10 +357,10 @@ display: block;
         <p class="cardPages"><span class="cardPagesCount"></span></p>
         <span class="cardStatus"></span>
         <div class="buttonBox">
-        <button>read</button>
-        <button>remove</button>
+            <button class="cardReadButton">read</button>
+            <button class="cardRemoveButton">remove</button>
         </div></div>
-        <div class="book book5 cardTemplate" id="book5"
+        <div class="book book5 cardTemplate ghost" id="book5"
         data-bookslot=""
         data-title=""
         data-author=""
@@ -347,11 +373,11 @@ display: block;
             <p class="cardPages"><span class="cardPagesCount"></span></p>
             <span class="cardStatus"></span>
             <div class="buttonBox">
-            <button>read</button>
-            <button>remove</button>
+                <button class="cardReadButton">read</button>
+                <button class="cardRemoveButton">remove</button>
         </div>
         </div>
-        <div class="book book6 cardTemplate" id="book6"
+        <div class="book book6 cardTemplate ghost" id="book6"
         data-bookslot=""
         data-title=""
         data-author=""
@@ -364,17 +390,22 @@ display: block;
             <p class="cardPages"><span class="cardPagesCount"></span></p>
             <span class="cardStatus"></span>
             <div class="buttonBox">
-            <button>read</button>
-            <button>remove</button>
+                <button class="cardReadButton">read</button>
+                <button class="cardRemoveButton">remove</button>
         </div>
         </div>
+        
         <div  class="dewey cardTemplate">
-            I am the Dewey Decimal System!
-            <ol id="dewey">
-                <li>no books entered</li>
-            </ol>
+            <table id="dewTable">
+                <th colspan="2">Dewey Decimal System</th>
+                <tr><td class="dewTableKey">Title</td><td class="dewTableKey">Author</td></tr>
+
+
+            </table>
+    
         </div>
-        <div class="book book7 cardTemplate" id="book7"
+        
+        <div class="book book7 cardTemplate ghost" id="book7"
         data-bookslot=""
         data-title=""
         data-author=""
@@ -387,11 +418,11 @@ display: block;
             <p class="cardPages"><span class="cardPagesCount"></span></p>
             <span class="cardStatus"></span>
             <div class="buttonBox">
-            <button>read</button>
-            <button>remove</button>
+                <button class="cardReadButton">read</button>
+                <button class="cardRemoveButton">remove</button>
         </div>
         </div>
-        <div class="book book8 cardTemplate" id="book8"
+        <div class="book book8 cardTemplate ghost" id="book8"
         data-bookslot=""
         data-title=""
         data-author=""
@@ -404,8 +435,8 @@ display: block;
             <p class="cardPages"><span class="cardPagesCount"></span></p>
             <span class="cardStatus"></span>
             <div class="buttonBox">
-            <button>read</button>
-            <button>remove</button>
+                <button class="cardReadButton">read</button>
+                <button class="cardRemoveButton">remove</button>
         </div>
         </div>
 
@@ -444,14 +475,15 @@ Annie Spratt
     </div>
 </div>
 </div>
-    <p>
-
-    </p>
 </body>
+
+
+
+
 <script>
 
 
-let library = [{title: 'fake title', author: 'fake author', pageCount: '222', status: 'read'}];
+let library = [{title: 'qwe', author: 'qwe', pageCount: '2', status: 'read'}];
 
 let bookShelf = [];
 let bookCount = 0;
@@ -473,6 +505,7 @@ const haveRead = document.getElementById('haveRead');
 const hnotRead = document.getElementById('hnotRead');
 const dewey = document.getElementById('dewey');
 const read_status =  document.getElementsByName('read_status');
+const formMesg = document.getElementById('formMesg');
 const bookSlot = document.querySelector('#bookslot');
 const book1 = document.getElementById('book1');
 const book2 = document.getElementById('book2');
@@ -482,10 +515,8 @@ const book5 = document.getElementById('book5');
 const book6 = document.getElementById('book6');
 const book7 = document.getElementById('book7');
 const book8 = document.getElementById('book8');
-
-
-
 let editor = [book1, book2, book3, book4, book5, book6, book7, book8]
+const dewTable = document.getElementById('dewTable');
 
 
 function test(){
@@ -506,12 +537,64 @@ switchButton2.addEventListener('click', e => {
 
 submitButton.addEventListener('click', e =>{
         verifyForm();
-       addBookToLibrary(titleInput.value, authorInput.value, countInput.value, "have");
+        let submittedStatus = "";
+        
+        if (document.getElementById('haveRead').checked) {
+            submittedStatus = document.getElementById('haveRead').value;
+        }else if(document.getElementById('hnotRead').checked) {
+            submittedStatus = document.getElementById('hnotRead').value;
+        }else{console.log("poteniol form error with radio button");}
+
+
+
+
+
+       addBookToLibrary(titleInput.value, authorInput.value, countInput.value, submittedStatus);
 })
 
 
-//make a read/unread switch button
-//make a remove book from library button
+                                    // This updates the "read/unread" display on the card from the button click
+document.querySelectorAll('.cardReadButton').forEach(item=>{
+        item.addEventListener('click', event=>{ 
+            let target= event.target;
+            let parent = target.parentElement;
+            let parentDiv = parent.parentElement;
+            let childSpan = parentDiv.getElementsByClassName('cardStatus');
+
+            console.log(childSpan[0].innerHTML);
+            // childSpan.textContent ='replace';
+
+            // console.log(childSpan.value);
+
+            if(parentDiv.dataset.status === "read"){
+                parentDiv.dataset.status = "unread";
+                console.log(target);
+                target.classList.add("red");   
+                // console.log("at,,.,.," + parentDiv)
+                childSpan[0].innerHTML="unread"
+            
+                
+            }else if(parentDiv.dataset.status === "unread" ){
+               parentDiv.dataset.status = "read";
+               target.classList.remove("red"); 
+               childSpan[0].innerHTML="read"
+            }
+
+        // console.log( 'grabbing title of grandparent ' + parentDiv.dataset.status)
+        })})
+
+document.querySelectorAll('.cardRemoveButton').forEach(item=>{
+    item.addEventListener('click', event=>{
+    let target= event.target;
+            let parent = target.parentElement;
+            let parentDiv = parent.parentElement;
+            let childSpan = parentDiv.getElementsByClassName('cardStatus');
+
+            console.log("remove actviated" + childSpan[0].innerHTML);
+})})
+
+
+
 
 
                                                         // VERIFY INPUTS
@@ -596,7 +679,11 @@ function verifyForm(){
         validForm = false;
     }
 }
-                                                        // BLUR check
+
+titleInput.addEventListener('focus', e =>{
+    formMesg.innerHTML="Fill out all fields";
+})
+// BLUR check
 document.querySelectorAll(".form_input").forEach(inputElement => { 
         inputElement.addEventListener("blur", e =>{    
             if(e.target.id === "titleInput"){
@@ -638,8 +725,6 @@ document.querySelectorAll(".form_input").forEach(inputElement => {
             }
         })
                 })
-
-
 function constructBook(title, author, pageCount, status){
               
                 this.title = title;
@@ -651,9 +736,30 @@ function constructBook(title, author, pageCount, status){
                 }
 
 }
+function errorMessage(mesg){
+
+console.log(mesg);  
+formMesg.innerHTML=mesg;
+
+}
 function addBookToLibrary(title, author, pageCount, status) {
-console.log("trying")   
-          if(validForm === true){   
+    if(validForm === true){   
+                                                            // SCAN FOR DUPLICATES FIRST!
+            let alreadyHave = false;
+            console.log(title);
+            for(i=0; i<8; i++){
+                                
+                                if(library[i]!== undefined){
+                                    if (title === library[i]["title"]){
+                                    console.log("duplicate located at index: " + i); 
+                                        errorMessage("Book Already In System");
+                                        return;
+                                }
+                                }else{console.log("no book at " + i + "yet")}
+                            }
+                
+
+
                 let newBook = new constructBook(title, author, pageCount, status)
                 
                 library.push(newBook);
@@ -665,9 +771,50 @@ console.log("trying")
 
                 //change dewey to bounce from library
 function updateDewey(){
-    let i=library.length-1;
-    let incoming = `${titleInput.value} by ${authorInput.value}. ${countInput.value} pages.`;
-    dewey.append(incoming);
+    let l=library.length-1;
+    // let incoming = `${titleInput.value} by ${authorInput.value}. ${countInput.value} pages.`;
+    // dewey.append(incoming);
+    let catalogTotal = library.length;
+    let tl = dewTable.rows.length;
+
+    if(tl >2 ){
+        console.log("activing tl is greater than 2")
+    for(d=0; d < tl-2; d++){
+        console.log("d: " + d);
+        console.log("tl is " + tl);
+        console.log("moving to delete index: " + (d+2));
+         dewTable.deleteRow(2);
+        };
+    }
+
+
+    for(i=0; i<catalogTotal;i++){
+
+        if(library.length === 0){
+            console.log("empty");
+            return};
+
+
+        var row = dewTable.insertRow(i+2);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+
+        cell1.innerHTML = library[i]["title"];
+        cell1.classList.add("deweyBook");
+        cell2.innerHTML = library[i]["author"];
+        cell2.classList.add("deweyBook");
+
+            // dewTable
+    }
+
+
+
+
+
+
+
+
 
 }
 
@@ -681,24 +828,42 @@ let shelfCap = 8;
      
             for(i=0; i<shelfCap; i++){
                 if(library[i]=== undefined){
-                    // editor[i].bookslot=[i]+1;
+                 
                     editor[i].querySelector('.cardTitle').innerHTML="";
                     editor[i].querySelector('.cardAuthor').innerHTML="";
                     editor[i].querySelector('.cardPages').innerHTML="";
                     editor[i].querySelector('.cardStatus').innerHTML="";
+
+                    editor[i].classList.add('ghost');
+             
+
+
+
                 }else if(library[i]["title"].length>0){
-                    console.log(library[i]["title"]+"being sent to editor....");
-                    editor[i].bookslot=[i]+1;
+
+            
+                    editor[i].dataset.ddsindex=[i];
+                    
                     editor[i].querySelector('.cardTitle').innerHTML=library[i]["title"];
+                    editor[i].dataset.title=library[i]["title"];
+
                     editor[i].querySelector('.cardAuthor').innerHTML=library[i]["author"];
+                    editor[i].dataset.author=library[i]["author"];
+
                     editor[i].querySelector('.cardPages').innerHTML=library[i]["pageCount"];
+                    editor[i].dataset.pagecount=library[i]["pageCount"];
+
                     editor[i].querySelector('.cardStatus').innerHTML=library[i]["status"];
+                    editor[i].dataset.status=library[i]["status"];
+
+
+                    editor[i].classList.remove('ghost');
                 }
             }
     }
 //displays the top 8
 
-//updatres Dewey
+updateDewey();
 
 
 function callClerk(){
@@ -724,6 +889,7 @@ function callClerk(){
 
 
 
+updateLibrary();
 
 
 
