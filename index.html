@@ -39,11 +39,53 @@ h1{
     grid-template-areas: 
     "..... book1 book2 clerk book3 book4 ..... "
     "..... book5 book6 dewey book7 book8 ....."
-    "..... manual manual manual manual manual ..... "
-    "..... ..... ..... footer ..... ..... ..... "
+    "..... ..... footer footer footer ..... ..... "
     ;
     gap: 1em;
+
 }
+@media only screen and (max-width: 1600px){
+.main{
+    grid-template-columns: 10% 1fr 1fr 1fr 1fr 1fr 10%;
+}
+}
+@media only screen and (max-width: 1500px){
+.main{
+    grid-template-columns: 5% 1fr 1fr 1fr 1fr 1fr 5%;
+}
+}
+@media only screen and (max-width: 1400px){
+.main{
+    grid-template-columns: 1% 1fr 1fr 1fr 1fr 1fr 1%;
+}
+}
+@media only screen and (max-width: 1250px){
+.main{
+    background-color: brown;
+    grid-template-columns: 10% 1fr 1fr 1fr 10%;
+    grid-template-rows:  1fr 1fr 1fr 1fr 10%;
+    grid-template-areas: 
+    "..... book1 clerk book2 ..... "
+    "..... book3 book4 book5 ....."
+    "..... book6 book7 book8 ....."
+    " ..... ..... dewey ..... ....."
+    "..... footer footer footer .....  "
+    ;
+
+}
+}
+
+
+@media only screen and (max-width: 600px){
+.main{
+    background-color:blue;
+}
+}
+
+
+
+
+
 .cardTemplate{
     height: 22em;
     max-height: 22em;
@@ -120,6 +162,8 @@ display: block;
     grid-area: book;
 }
 .book{
+    /* display: flex; */
+    justify-items: center;
     position: relative;
     width: 12.5em;
     height: 22em;
@@ -220,6 +264,11 @@ display: block;
 
 .whodis{
     grid-area: footer;
+    display: flex;
+    background-color: brown;
+    justify-content: center;
+    padding: .5em;
+
 }
 .manual{
     width: 100%;
@@ -237,9 +286,7 @@ display: block;
     max-width: 40%;
     margin: 1em;
 }
-.footer{
-    background-color: brown;
-}
+
 .red{
     border-color: crimson;
 }
@@ -299,11 +346,13 @@ display: block;
             <button class="cardReadButton">read</button>
             <button class="cardRemoveButton">remove</button>
         </div></div>
+
+
+
         <div class="clerk">
-       
             <div class="callTheClerk clerkCard cardTemplate" id="callTheClerk">
                 <h3>Hello</h3>
-                <p>there are <span id="updateBookTitle">0</span> books in the system.</p>
+                <p>there are <span id="catalogTotalSpan">0</span> books in the system.</p>
                 <button id="switchButton">Add a New Book +</button>
             </div>
             <div class="addTheBook clerkCard cardTemplate" id="addTheBook">
@@ -440,33 +489,8 @@ display: block;
         </div>
         </div>
 
-
-
-
-
-    <div class="manual">
-        <div class="instruction">
-            <p>
-
-        </div>
-
-        <div class="instruction">
-            <p>Add a button on each book’s display to remove the book from the library.
-                You will need to associate your DOM elements with the actual book objects in some way. One easy solution is giving them a data-attribute that corresponds to the index of the library array.</p>
-        </div>
-        <div class="instruction">
-            <p>Add a button on each book’s display to change its read status.
-                To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.</p>
-        </div>
-        <div class="instruction">
-            <p>NOTE: You’re not required to add any type of storage right now. You will have the option to come back to this project later on in the course.</p>
-        </div>
-    </div>
     <div class="whodis">
-        Annie Spratt
-Avatar of user Annie Spratt
-Annie Spratt
-@anniespratt
+        Book img: Annie Spratt @anniespratt on unsplash.com
 
 
 
@@ -481,9 +505,13 @@ Annie Spratt
 
 
 <script>
+function runTest(){
+    
+    library.push({title: 'qwe', author: 'qwe', pageCount: '2', status: 'read'},{title: 'qwwqde', author: 'qwe', pageCount: '2', status: 'read'},{title: 'qw23e', author: 'qwe', pageCount: '2', status: 'read'});
+    updateLibrary()
+}
 
-
-let library = [{title: 'qwe', author: 'qwe', pageCount: '2', status: 'read'}];
+let library = [];
 
 let bookShelf = [];
 let bookCount = 0;
@@ -517,13 +545,9 @@ const book7 = document.getElementById('book7');
 const book8 = document.getElementById('book8');
 let editor = [book1, book2, book3, book4, book5, book6, book7, book8]
 const dewTable = document.getElementById('dewTable');
+const catalogTotalSpan = document.getElementById('catalogTotalSpan');
 
 
-function test(){
-    console.log("using array access    " + library[0]["title"]);
-    console.log(bookSlot.dataset.b1 );
-
-}
 
                                                                     // Card Switch
 switchButton.addEventListener('click', e => {
@@ -534,7 +558,6 @@ switchButton2.addEventListener('click', e => {
         e.preventDefault();
        callClerk();
     });
-
 submitButton.addEventListener('click', e =>{
         verifyForm();
         let submittedStatus = "";
@@ -551,8 +574,6 @@ submitButton.addEventListener('click', e =>{
 
        addBookToLibrary(titleInput.value, authorInput.value, countInput.value, submittedStatus);
 })
-
-
                                     // This updates the "read/unread" display on the card from the button click
 document.querySelectorAll('.cardReadButton').forEach(item=>{
         item.addEventListener('click', event=>{ 
@@ -589,13 +610,28 @@ document.querySelectorAll('.cardRemoveButton').forEach(item=>{
             let parent = target.parentElement;
             let parentDiv = parent.parentElement;
             let childSpan = parentDiv.getElementsByClassName('cardStatus');
+            deleteBookFromLibrary(parentDiv.dataset.ddsindex);
 
-            console.log("remove actviated" + childSpan[0].innerHTML);
 })})
 
 
 
+function deleteBookFromLibrary(indexNumber){
 
+let i = indexNumber;
+                    editor[i].querySelector('.cardTitle').innerHTML="";
+                    editor[i].querySelector('.cardAuthor').innerHTML="";
+                    editor[i].querySelector('.cardPages').innerHTML="";
+                    editor[i].querySelector('.cardStatus').innerHTML="";
+                    editor[i].classList.add('ghost');
+
+
+
+    library.splice(indexNumber, 1);
+    updateLibrary();
+    updateDewey();
+    updateCatalogSummary(library.length);
+}
 
                                                         // VERIFY INPUTS
 
@@ -754,14 +790,13 @@ function addBookToLibrary(title, author, pageCount, status) {
                                     console.log("duplicate located at index: " + i); 
                                         errorMessage("Book Already In System");
                                         return;
+                                    }
                                 }
-                                }else{console.log("no book at " + i + "yet")}
-                            }
+            }
                 
 
 
                 let newBook = new constructBook(title, author, pageCount, status)
-                
                 library.push(newBook);
                 bookCount ++;
                 updateLibrary();
@@ -769,6 +804,9 @@ function addBookToLibrary(title, author, pageCount, status) {
                 }                }                                 
 
 
+function updateCatalogSummary(total){
+            catalogTotalSpan.textContent=total;
+}
                 //change dewey to bounce from library
 function updateDewey(){
     let l=library.length-1;
@@ -821,12 +859,10 @@ function updateDewey(){
 function updateLibrary(){    
         if(library.length > 0){console.log("updating library");
         }else{return;}
-let shelfCap = 8;
-// if(library.length < 8){
-//     shelfCap=library.length;} 
-    console.log("shelf " + shelfCap);
-     
-            for(i=0; i<shelfCap; i++){
+        updateCatalogSummary(library.length);
+
+        let shelfCap = 8;
+                for(i=0; i<shelfCap; i++){
                 if(library[i]=== undefined){
                  
                     editor[i].querySelector('.cardTitle').innerHTML="";
@@ -860,10 +896,10 @@ let shelfCap = 8;
                     editor[i].classList.remove('ghost');
                 }
             }
-    }
-//displays the top 8
+            updateDewey();
+        }
 
-updateDewey();
+
 
 
 function callClerk(){
