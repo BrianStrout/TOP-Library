@@ -766,21 +766,33 @@ document.querySelectorAll(".form_input").forEach(inputElement => {
 
                 // TO BE DONE REWORK FUNCTION INTO CLASS
 
+                class libro {
+                        constructor(title, author, pageCount, status) 
+                        {
+                            this.title = title;
+                            this.author = author;
+                            this.pageCount= pageCount;
+                            this.status = status;
+                            this.getInfo = function(){
+                                console.log("Book registered " + title);
+                        }
 
-
-
-
-                function constructBook(title, author, pageCount, status){
-              
-                this.title = title;
-                this.author = author;
-                this.pageCount= pageCount;
-                this.status = status;
-                this.getInfo = function(){
-                    console.log("Book registered " + title);
                 }
 
-}
+
+                // function constructBook(title, author, pageCount, status){
+              
+                // this.title = title;
+                // this.author = author;
+                // this.pageCount= pageCount;
+                // this.status = status;
+                // this.getInfo = function(){
+                //     console.log("Book registered " + title);
+                // }
+// }
+
+
+
 function errorMessage(mesg){
 
 console.log(mesg);  
@@ -805,7 +817,7 @@ function addBookToLibrary(title, author, pageCount, status) {
                 
 
 
-                let newBook = new constructBook(title, author, pageCount, status)
+                let newBook = new libro(title, author, pageCount, status)
                 library.push(newBook);
                 bookCount ++;
                 updateLibrary();
